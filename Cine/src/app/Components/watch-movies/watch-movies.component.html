@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/agregar">Agregar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Funciones</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="col-md-3" *ngFor="let movie of movies">
+<div class="card text-center">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+    {{movie.nombre_p}}
+    <button class="btn btn-danger" (click)="deletemovie(movie.nombre_p)">
+        <i class="far fa-trash-alt"></i>
+    </button>
+    </div>
+    <img [src]="movie.imagen" class="card-img-top img">
+    <div class="card-body">
+        <p>{{movie.resumen}}</p>
+        <button class="btn btn-info sticky-bottom " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="getmovie(movie.nombre_p)">
+            <i class="far fa-pen-to-square"></i>
+        </button>
+    </div>
+</div>
+</div>
+
+<!-- Modal Editar Pelicula -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Agregar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+        <form >
+          <div class="form-group">
+              <input type="text" name="titulo" [(ngModel)]="movies2.nombre_p" value="{{movies2.nombre_p}}" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+              <textarea name="resumen" value="{{movies2.resumen}}" [(ngModel)]="movies2.resumen" rows="2" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+              <input type="url" name="imagen"  [(ngModel)]="movies2.imagen" class="form-control"  value="{{movies2.imagen}}">
+          </div>
+          <br>
+          <button class="btn btn-success btn-block" length="220px" (click)="guardarpelicula(movie.nombre_p)">
+              Guardar
+          </button>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="guardarproducto()">Agregar</button> -->
+      </div>
+    </div>
+  </div>
+</div>

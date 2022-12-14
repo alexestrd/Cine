@@ -1,0 +1,43 @@
+ CREATE DATABASE cinemex;
+use cinemex;
+
+create table cine(
+    nombre_c varchar(30) not null PRIMARY KEY,
+    locacion varchar(300) not null
+    );
+create table peliculas(
+    nombre_p varchar(30) not null PRIMARY KEY,
+    resumen varchar(300) not null,
+    imagen varchar(300)
+    );
+    
+CREATE TABLE horarios(
+    id_hora int(10) not null AUTO_INCREMENT PRIMARY KEY,
+    nombre_c varchar(30)not null,
+    nombre_p varchar(30)not null,
+    fecha_f date not null,
+    hora time not null,
+    FOREIGN KEY (nombre_c) REFERENCES cine(nombre_c),
+    FOREIGN KEY (nombre_p) REFERENCES peliculas(nombre_p)
+    );
+CREATE TABLE ticket(
+    id_ticket int(15)not null AUTO_INCREMENT PRIMARY KEY,
+    nombre_c varchar(20)not null,
+    nombre_p varchar(20)not null,
+    fecha_f date NOT null,
+    fecha_c TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_hora int(10) not null,
+    FOREIGN KEY (nombre_c) REFERENCES cine(nombre_c),
+    FOREIGN key (nombre_p) REFERENCES peliculas(nombre_p),
+    FOREIGN KEY (id_hora) REFERENCES horarios(id_hora)
+);
+
+
+create table productos(
+    id int(25)not null PRIMARY KEY,
+    producto varchar(100) not null,
+    descripcion varchar(300) not null,
+    cantidad int(25)not null,
+    precio varchar(25)not null,
+    imagen varchar(300)
+    );

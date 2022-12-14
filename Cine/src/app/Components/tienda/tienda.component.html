@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar</button>
+      </div>
+      <!-- Boton Modal carro -->
+      <button type="button" class="btn btn-success" style="margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#modalcarro">
+        <i class="fa-solid fa-cart-shopping"></i> Carrito <span class="badge text-bg-success">4</span>
+      </button>
+      <a href="/inicio" class="reg">Regresar</a>
+    </div>
+  </nav>
+   
+  
+  
+<!-- Modal Agregar Producto -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Agregar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form >
+          <div class="form-group">
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">Nombre: </label>
+            <input type="text" name="nombre" class="form-control" [(ngModel)]="productos.producto" id="recipient-name">
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">ID: </label>
+            <input type="number" name="nombre" class="form-control" [(ngModel)]="productos.id" id="recipient-name">
+          </div>
+          <div class="mb-3 form-group">
+            <label for="message-text" class="col-form-label">Descripcion: </label>
+            <textarea class="form-control" name="descrip" [(ngModel)]="productos.descripcion" id="message-text"></textarea>
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">Precio: </label>
+            <input type="text" class="form-control" name="precio" [(ngModel)]="productos.precio" id="recipient-name">
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">Cantidad: </label>
+            <input type="number" class="form-control" name="cantidad" [(ngModel)]="productos.cantidad" id="recipient-name">
+          </div>
+          <div class="mb-3 form-group">
+            <label for="recipient-name" class="col-form-label">URL-Imagen: </label>
+            <input type="text" class="form-control" name="imagen" [(ngModel)]="productos.imagen" id="recipient-name">
+          </div>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarproducto()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- moodal carrito-->
+<div class="modal fade" id="modalcarro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito de Compras</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal Pago-->
+<div  class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let producto of productos">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-cente">
+        <div><h5 id="nombre"  value="hola">{{producto.producto}}</h5></div>
+        <input type="text" #prod value="{{producto.id}}" style="width: 0px; opacity: 0;">
+        <!-- <button class="btn btn-danger">
+            <i class="far fa-trash-alt"></i>
+        </button> -->
+        </div>
+        <div class="align-items-center">
+        <img [src]="producto.imagen" class="card-img-top" style="width: 155px; ">
+        </div>
+        <div class="card-body">
+          <p>{{producto.descripcion}}</p>
+          <h6>Precio:</h6>
+            <p id="precio">${{producto.precio}}</p>
+            <button class="btn btn-info" (click)="agregarcarr()">
+              <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+            </button>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
